@@ -3,10 +3,10 @@ import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
 import * as Location from 'expo-location'
 import MapView from 'react-native-maps'
 
-function Homepage() {
+function Homepage({ navigation }) {
 	const [location, setLocation] = useState(null)
 	const [errorMsg, setErrorMsg] = useState(null)
-	const [citiesNearLocationMode, setCitiesNearLocationMode] = useState(false)
+    const [radiusText, setRadiusText] = useState('')
 
 	useEffect(() => {
 		;(async () => {
@@ -33,15 +33,22 @@ function Homepage() {
 		text = JSON.stringify(location)
 	}
 
+    const radiusTextHandler = (radiusText) => {
+        setRadiusText(radiusText)
+    }
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.top}>
 				<Text style={styles.header}>
-					GIS Course App - Check nearest locations
+					GIS Course App
 				</Text>
 				<TextInput
 					placeholder='Select radius in meters'
 					keyboardType='decimal-pad'
+                    value={radiusText}
+                    onChangeText={radiusTextHandler}
+                    style={styles.input}
 				/>
 			</View>
 			<MapView
@@ -54,7 +61,9 @@ function Homepage() {
 			<View style={styles.bottom}>
 				<Button
 					title='Check for cities near location'
-					// onPress={() => setCitiesNearLocationMode(true)}
+					onPress={() => navigation.navigate('NearestCities', {
+                        radius: radiusText
+                    })}
 				/>
 				<Button title='something else?' />
 			</View>
@@ -81,6 +90,9 @@ const styles = StyleSheet.create({
 	map: {
 		flex: 4,
 	},
+    input: {
+        textAlign: 'center'
+    }
 })
 
 export default Homepage
