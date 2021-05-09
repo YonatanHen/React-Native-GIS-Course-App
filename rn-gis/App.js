@@ -11,7 +11,7 @@ export default function App() {
 	return (
 		<NavigationContainer>
 			<Stack.Navigator initialRouteName='Home'>
-				<Stack.Screen name='Home' component={Homepage} />
+				<Stack.Screen name='Home' component={Homepage} options = {{ title: 'GIS Course React-Native App'}}/>
 				<Stack.Screen name="NearestCities" component={NearestCities} />
 			</Stack.Navigator>
 		</NavigationContainer>

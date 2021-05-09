@@ -40,11 +40,8 @@ function Homepage({ navigation }) {
 	return (
 		<View style={styles.container}>
 			<View style={styles.top}>
-				<Text style={styles.header}>
-					GIS Course App
-				</Text>
 				<TextInput
-					placeholder='Select radius in meters'
+					placeholder='Select radius in kilometers'
 					keyboardType='decimal-pad'
                     value={radiusText}
                     onChangeText={radiusTextHandler}
@@ -84,14 +81,13 @@ const styles = StyleSheet.create({
 	bottom: {
 		flex: 1,
 	},
-	header: {
-		textAlign: 'center',
-	},
 	map: {
 		flex: 4,
 	},
     input: {
-        textAlign: 'center'
+        textAlign: 'center',
+        borderWidth: 1,
+        padding: 2
     }
 })
 
