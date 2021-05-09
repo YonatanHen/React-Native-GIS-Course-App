@@ -1,5 +1,5 @@
-expo
-node_modules
+rn-gis/expo
+rn-gis/node_modules
 rn-gis/node_modules/.bin/atob
 rn-gis/node_modules/.bin/atob.cmd
 rn-gis/node_modules/.bin/atob.ps1
