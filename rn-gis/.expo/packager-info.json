@@ -1,10 +1,8 @@
 {
-  "devToolsPort": 19002,
   "expoServerPort": 19000,
+  "devToolsPort": 19002,
   "packagerPort": 19000,
-  "packagerPid": null,
   "expoServerNgrokUrl": "https://53-h2n.anonymous.rn-gis.exp.direct",
   "packagerNgrokUrl": "https://packager.53-h2n.anonymous.rn-gis.exp.direct",
-  "ngrokPid": 1520,
-  "webpackServerPort": null
+  "ngrokPid": 10948
 }

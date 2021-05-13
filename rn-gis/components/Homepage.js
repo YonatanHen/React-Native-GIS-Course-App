@@ -1,71 +1,43 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
-import * as Location from 'expo-location'
-import MapView from 'react-native-maps'
+import MapView, { ProviderPropType } from 'react-native-maps'
 
-function Homepage({ navigation }) {
-	const [location, setLocation] = useState(null)
-	const [errorMsg, setErrorMsg] = useState(null)
-    const [radiusText, setRadiusText] = useState('')
+function Homepage({ navigation, route }) {	
+	const [radiusText, setRadiusText] = useState('0')
 
-	useEffect(() => {
-		;(async () => {
-			let { status } = await Location.requestForegroundPermissionsAsync()
-			if (status !== 'granted') {
-				setErrorMsg('Permission to access location was denied')
-				return
-			}
 
-			let location = await Location.getCurrentPositionAsync({})
-			setLocation({
-				latitude: location.coords.latitude,
-				longitude: location.coords.longitude,
-				latitudeDelta: 0.922,
-				longitudeDelta: 0.0421,
-			})
-		})()
-	}, [])
-
-	let text = 'Waiting..'
-	if (errorMsg) {
-		text = errorMsg
-	} else if (location) {
-		text = JSON.stringify(location)
+	const radiusTextHandler = (radiusText) => {
+		setRadiusText(radiusText)
 	}
-
-    const radiusTextHandler = (radiusText) => {
-        setRadiusText(radiusText)
-    }
 
 	return (
 		<View style={styles.container}>
 			<View style={styles.top}>
+				<Text>Set Circle radius from current location</Text>
 				<TextInput
-					placeholder='Select radius in kilometers'
+					placeholder='Select radius in meters'
 					keyboardType='decimal-pad'
-                    value={radiusText}
-                    onChangeText={radiusTextHandler}
-                    style={styles.input}
+					value={radiusText}
+					onChangeText={radiusTextHandler}
+					style={styles.input}
 				/>
+				<Button title='Show circle!' style={{ backgroundColor: 'green' }}/>
 			</View>
 			<MapView
-				initialRegion={location}
+				initialRegion={route.params.location}
 				showsUserLocation={true}
 				showsCompass={true}
 				rotateEnabled={false}
 				style={styles.map}
-			/>
-			<View style={styles.bottom}>
-				<Button
-					title='Check for cities near location'
-					onPress={() => navigation.navigate('NearestCities', {
-                        radius: radiusText
-                    })}
-				/>
-				<Button title='something else?' />
-			</View>
+			>
+			</MapView>
+			<View style={styles.bottom} />
 		</View>
 	)
+} 
+
+Homepage.propTypes = {
+	provider: ProviderPropType,
 }
 
 const styles = StyleSheet.create({
@@ -82,13 +54,13 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	map: {
-		flex: 4,
+		flex: 2,
 	},
-    input: {
-        textAlign: 'center',
-        borderWidth: 1,
-        padding: 2
-    }
+	input: {
+		textAlign: 'center',
+		borderWidth: 1,
+		padding: 2,
+	},
 })
 
 export default Homepage
