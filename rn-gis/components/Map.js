@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
 import MapView, { ProviderPropType } from 'react-native-maps'
 
-function Homepage({ navigation, route }) {	
-	const [radiusText, setRadiusText] = useState('0')
 
+function Map({ navigation, route }) {
+	const [radiusText, setRadiusText] = useState('0')
 
 	const radiusTextHandler = (radiusText) => {
 		setRadiusText(radiusText)
@@ -13,15 +13,8 @@ function Homepage({ navigation, route }) {
 	return (
 		<View style={styles.container}>
 			<View style={styles.top}>
-				<Text>Set Circle radius from current location</Text>
-				<TextInput
-					placeholder='Select radius in meters'
-					keyboardType='decimal-pad'
-					value={radiusText}
-					onChangeText={radiusTextHandler}
-					style={styles.input}
-				/>
-				<Button title='Show circle!' style={{ backgroundColor: 'green' }}/>
+				{/* TODO: Add some text here via the routing */}
+				<Text>{route.params.title}</Text>
 			</View>
 			<MapView
 				initialRegion={route.params.location}
@@ -29,32 +22,25 @@ function Homepage({ navigation, route }) {
 				showsCompass={true}
 				rotateEnabled={false}
 				style={styles.map}
-			>
-			</MapView>
-			<View style={styles.bottom} />
+				customMapStyle={route.params.mapStyle}
+			></MapView>
 		</View>
 	)
-} 
-
-Homepage.propTypes = {
-	provider: ProviderPropType,
 }
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: '#fff',
+		...StyleSheet.absoluteFillObject,
 	},
 	top: {
 		flex: 0.5,
 		alignItems: 'center',
 		marginTop: '5%',
 	},
-	bottom: {
-		flex: 1,
-	},
 	map: {
-		flex: 2,
+		flex: 3,
 	},
 	input: {
 		textAlign: 'center',
@@ -63,4 +49,4 @@ const styles = StyleSheet.create({
 	},
 })
 
-export default Homepage
+export default Map
