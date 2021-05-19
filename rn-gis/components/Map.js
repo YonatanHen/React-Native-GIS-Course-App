@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
-import MapView, { ProviderPropType } from 'react-native-maps'
-
+import MapView, { ProviderPropType, Marker, OverlayComponent } from 'react-native-maps'
 
 function Map({ navigation, route }) {
 	const [radiusText, setRadiusText] = useState('0')
+	const [x, setX] = useState(route.params.location)
 
 	const radiusTextHandler = (radiusText) => {
 		setRadiusText(radiusText)
@@ -23,7 +23,13 @@ function Map({ navigation, route }) {
 				rotateEnabled={false}
 				style={styles.map}
 				customMapStyle={route.params.mapStyle}
-			></MapView>
+			>
+				<Marker
+					draggable
+					coordinate={x}
+					onDragEnd={(e) => setX(e.nativeEvent.coordinate )}
+				/>
+			</MapView>
 		</View>
 	)
 }
@@ -34,11 +40,11 @@ const styles = StyleSheet.create({
 		backgroundColor: '#fff',
 		...StyleSheet.absoluteFillObject,
 	},
-	top: {
-		flex: 0.5,
-		alignItems: 'center',
-		marginTop: '5%',
-	},
+	// top: {
+	// 	flex: 0.5,
+	// 	alignItems: 'center',
+	// 	marginTop: '5%',
+	// },
 	map: {
 		flex: 3,
 	},

@@ -6,6 +6,7 @@ import Map from './components/Map'
 import Home from './components/Home'
 import * as Location from 'expo-location'
 import { Image, StyleSheet, Dimensions } from 'react-native'
+import FitImage from 'react-native-fit-image';
 
 const DarkStyle = [
 	{
@@ -205,7 +206,7 @@ export default function App() {
 
 	return (
 		<NavigationContainer>
-			<Image source={image} style={{ width , height, position: 'absolute' }} />
+			<FitImage source={image} style={{ width , height, position: 'absolute' }} />
 			<Stack.Navigator
 				initialRouteName='Home'
 				screenOptions={{
@@ -217,7 +218,7 @@ export default function App() {
 				<Stack.Screen
 					name='Home'
 					component={Home}
-					options={{ title: 'GIS Course React-Native App' }}
+					options={{ headerShown: false }}
 					initialParams={{
 						location: location,
 					}}

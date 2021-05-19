@@ -7,7 +7,7 @@ import { color } from 'react-native-reanimated'
 
 function Home({ navigation }) {
 	return (
-		<View style={{ flex: 1, alignItems: 'center', marginVertical: '2%' }}>
+		<View style={{ flex: 1, alignItems: 'center', marginVertical: '10%' }}>
 			<Text>Select a map:</Text>
 			<View style={styles.button}>
 				<Button
