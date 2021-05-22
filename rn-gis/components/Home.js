@@ -7,8 +7,11 @@ import { color } from 'react-native-reanimated'
 
 function Home({ navigation }) {
 	return (
-		<View style={{ flex: 1, alignItems: 'center', marginVertical: '2%' }}>
-			<Text>Select a map:</Text>
+		<View styles={styles.menu}>
+			<View>
+				<Text style={styles.logo}>GIS App</Text>
+			</View>
+			<Text style={styles.text}>Select a map:</Text>
 			<View style={styles.button}>
 				<Button
 					title='Google Map'
@@ -28,10 +31,28 @@ function Home({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+	menu: {
+		flex: 1, 
+		alignItems: 'center', 
+		marginVertical: '2%',
+	},
+	logo: {
+		fontSize: 38,
+		fontFamily: 'monospace',
+		marginTop: '26%',
+		marginRight: '30%',
+	},
 	button: {
 		marginVertical: '2%',
 		fontFamily: 'Helvetica',
+		width: '30%',
+		marginLeft: '35%'
 	},
+	text: {
+		color:'blue',
+		fontSize: 20,
+		marginRight: '32%',
+	}
 })
 
 export default Home

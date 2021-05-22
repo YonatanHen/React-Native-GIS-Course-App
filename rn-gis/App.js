@@ -205,7 +205,7 @@ export default function App() {
 
 	return (
 		<NavigationContainer>
-			<Image source={image} style={{ width , height, position: 'absolute' }} />
+			<Image source={image} style={styles.imageTag} />
 			<Stack.Navigator
 				initialRouteName='Home'
 				screenOptions={{
@@ -246,6 +246,9 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+	body: {
+		backgroundColor: 'blue'
+	},
 	container: {
 		flex: 1,
 		flexDirection: 'column',
@@ -255,4 +258,10 @@ const styles = StyleSheet.create({
 		resizeMode: 'cover',
 		justifyContent: 'center',
 	},
+	imageTag: {
+		width , 
+		height, 
+		position: 'absolute',
+		opacity: 0.3
+	}
 })
