@@ -6,8 +6,10 @@ function Map({ navigation, route }) {
 	const [radiusText, setRadiusText] = useState('0')
 	const [x, setX] = useState(route.params.location)
 
-	const radiusTextHandler = (radiusText) => {
-		setRadiusText(radiusText)
+	const distanceTextHandler = (markerLocation) => {
+		setX(markerLocation)
+		// setDistanceText(radiusText)
+		console.log(x)
 	}
 
 	return (
@@ -27,7 +29,7 @@ function Map({ navigation, route }) {
 				<Marker
 					draggable
 					coordinate={x}
-					onDragEnd={(e) => setX(e.nativeEvent.coordinate )}
+					onDragEnd={(e) => distanceTextHandler(e.nativeEvent.coordinate )}
 				/>
 			</MapView>
 		</View>
