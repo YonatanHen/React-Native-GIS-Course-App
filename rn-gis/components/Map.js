@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from 'react'
+import { getDistance } from 'geolib'
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
 import MapView, { ProviderPropType, Marker, OverlayComponent } from 'react-native-maps'
 
 function Map({ navigation, route }) {
-	const [radiusText, setRadiusText] = useState('0')
+	const [distance, setDistanceText] = useState('Drag the marker to see distance')
 	const [x, setX] = useState(route.params.location)
 
 	const distanceTextHandler = (markerLocation) => {
 		setX(markerLocation)
-		// setDistanceText(radiusText)
-		console.log(x)
+
+		var dis = getDistance(
+            {latitude: route.params.location.latitude, longitude: route.params.location.longitude},
+            {latitude: x.latitude, longitude: x.longitude}
+          )
+
+		setDistanceText(`The distance is ${dis} meters`)
 	}
 
 	return (
 		<View style={styles.container}>
-			<View style={styles.top}>
-				{/* TODO: Add some text here via the routing */}
-				<Text>{route.params.title}</Text>
-			</View>
 			<MapView
 				initialRegion={route.params.location}
 				showsUserLocation={true}
@@ -28,9 +30,11 @@ function Map({ navigation, route }) {
 			>
 				<Marker
 					draggable
-					coordinate={x}
+					coordinate={{latitude: x.latitude, longitude: x.longitude}}
 					onDragEnd={(e) => distanceTextHandler(e.nativeEvent.coordinate)}
 				/>
+				<View style={styles.distanceBox}><Text style={styles.distanceText}>{distance}</Text></View>
+				
 			</MapView>
 		</View>
 	)
@@ -42,19 +46,17 @@ const styles = StyleSheet.create({
 		backgroundColor: '#fff',
 		...StyleSheet.absoluteFillObject,
 	},
-	// top: {
-	// 	flex: 0.5,
-	// 	alignItems: 'center',
-	// 	marginTop: '5%',
-	// },
 	map: {
-		flex: 3,
+		flex: 1,
 	},
-	input: {
-		textAlign: 'center',
-		borderWidth: 1,
-		padding: 2,
+	distanceText: {
+		fontWeight: 'bold'
 	},
+	distanceBox: {
+	flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 36,
+	}
 })
 
 export default Map
