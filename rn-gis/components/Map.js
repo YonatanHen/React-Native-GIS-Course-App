@@ -29,7 +29,7 @@ function Map({ navigation, route }) {
 				<Marker
 					draggable
 					coordinate={x}
-					onDragEnd={(e) => distanceTextHandler(e.nativeEvent.coordinate )}
+					onDragEnd={(e) => distanceTextHandler(e.nativeEvent.coordinate)}
 				/>
 			</MapView>
 		</View>
