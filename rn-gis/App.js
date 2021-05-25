@@ -6,7 +6,7 @@ import Map from './components/Map'
 import Home from './components/Home'
 import PolygonMap from './components/PolygonMap'
 import * as Location from 'expo-location'
-import { Image, StyleSheet, Dimensions } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 import FitImage from 'react-native-fit-image';
 
 const image = { uri: 'https://previews.123rf.com/images/mooltfilm/mooltfilm1808/mooltfilm180800024/112002439-vector-map-of-rome-in-black-and-white-city-map-simple-style.jpg' }
@@ -263,3 +263,92 @@ const DarkStyle = [
 		],
 	},
 ]
+
+const image = { uri: 'https://previews.123rf.com/images/mooltfilm/mooltfilm1808/mooltfilm180800024/112002439-vector-map-of-rome-in-black-and-white-city-map-simple-style.jpg' }
+const { width, height } = Dimensions.get('screen')
+
+
+export default function App() {	
+	const Stack = createStackNavigator()
+	
+	const [errorMsg, setErrorMsg] = useState(null)
+	const [location, setLocation] = useState(null)
+
+	useEffect(() => {
+		;(async () => {
+			let { status } = await Location.requestForegroundPermissionsAsync()
+			if (status !== 'granted') {
+				setErrorMsg('Permission to access location was denied')
+				return
+			}
+
+			let location = await Location.getCurrentPositionAsync({})
+			setLocation({
+				latitude: location.coords.latitude,
+				longitude: location.coords.longitude,
+				latitudeDelta: 0.922,
+				longitudeDelta: 0.0421,
+			})
+		})()
+	}, [])
+
+	let text = 'Waiting..'
+	if (errorMsg) {
+		text = errorMsg
+	} else if (location) {
+		text = JSON.stringify(location)
+	}
+
+	return (
+		<NavigationContainer>
+			<FitImage source={image} style={{ width , height, position: 'absolute' }} />
+			<Stack.Navigator
+				initialRouteName='Home'
+				screenOptions={{
+					cardStyle: {
+						backgroundColor: 'transparent',
+					},
+				}}
+			>
+				<Stack.Screen
+					name='Home'
+					component={Home}
+					options={{ headerShown: false }}
+					initialParams={{
+						location: location,
+					}}
+				/>
+				<Stack.Screen
+					name='Default Map'
+					component={Map}
+					options={{ title: 'Default Google Map' }}
+					initialParams={{
+						location: location,
+						mapStyle: null,
+					}}
+				/>
+				<Stack.Screen
+					name='Dark'
+					component={Map}
+					options={{ title: 'Dark Map' }}
+					initialParams={{
+						location: location,
+						mapStyle: DarkStyle,
+					}}
+				/>
+			</Stack.Navigator>
+		</NavigationContainer>
+	)
+}
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		flexDirection: 'column',
+	},
+	image: {
+		flex: 1,
+		resizeMode: 'cover',
+		justifyContent: 'center',
+	},
+})
