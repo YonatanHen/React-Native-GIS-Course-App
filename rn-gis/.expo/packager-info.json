@@ -4,5 +4,7 @@
   "packagerPort": 19000,
   "expoServerNgrokUrl": "https://53-h2n.anonymous.rn-gis.exp.direct",
   "packagerNgrokUrl": "https://packager.53-h2n.anonymous.rn-gis.exp.direct",
-  "ngrokPid": 16380
+  "ngrokPid": 19960,
+  "packagerPid": null,
+  "webpackServerPort": null
 }

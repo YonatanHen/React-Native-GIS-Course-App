@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
 import MapView, { ProviderPropType, Marker, OverlayComponent } from 'react-native-maps'
 
 function Map({ navigation, route }) {
-	const [distance, setDistanceText] = useState('Drag the marker to see distance')
+	const [distance, setDistanceText] = useState('Hold & Drag the marker to see distance')
 	const [x, setX] = useState(route.params.location)
 
 	const distanceTextHandler = (markerLocation) => {
@@ -31,7 +31,7 @@ function Map({ navigation, route }) {
 				<Marker
 					draggable
 					coordinate={{latitude: x.latitude, longitude: x.longitude}}
-					onDragEnd={(e) => distanceTextHandler(e.nativeEvent.coordinate)}
+					onDrag={(e) => distanceTextHandler(e.nativeEvent.coordinate)}
 				/>
 				<View style={styles.distanceBox}><Text style={styles.distanceText}>{distance}</Text></View>
 				
@@ -43,19 +43,29 @@ function Map({ navigation, route }) {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#fff',
 		...StyleSheet.absoluteFillObject,
 	},
 	map: {
 		flex: 1,
 	},
 	distanceText: {
-		fontWeight: 'bold'
+		fontWeight: 'bold',
+		borderWidth: 3,
+		color: 'black',
+		fontSize: 16,
+		paddingHorizontal: 20,
+		paddingTop: 2,
+		borderRadius: 10,
+		backgroundColor: 'white',
+		opacity: 0.75
 	},
 	distanceBox: {
 	flex: 1,
-    justifyContent: 'flex-end',
-    marginBottom: 36,
+    justifyContent: 'center',
+	position: 'absolute',
+	alignItems: 'center',
+    bottom: '5%',
+	width: '100%',	
 	}
 })
 
