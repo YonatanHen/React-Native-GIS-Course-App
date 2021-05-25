@@ -1,10 +1,12 @@
-import * as React from 'react'
+import React, { useEffect } from 'react'
 import { Button, View, Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { StyleSheet } from 'react-native'
+import Orientation from 'react-native-orientation';
 
 function Home({ navigation }) {
+
 	return (
 		<View style={{ flex: 1, alignItems: 'center', marginVertical: '10%' }}>
 			<Text style={styles.text}>Show distance from current location:</Text>
