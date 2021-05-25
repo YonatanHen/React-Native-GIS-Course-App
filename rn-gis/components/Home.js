@@ -36,7 +36,7 @@ function Home({ navigation }) {
 				<Button
 					title='Draw!'
 					onPress={() => navigation.navigate('Polygon')}
-                    color = '#D3D3D3'
+                    color = '#A8A8A8'
 				/>
 			</View>
 		</View>
@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
 		color: 'white',
 		fontWeight: 'bold',
 		textShadowColor: 'black',
-		textShadowRadius: 20
+		textShadowRadius: 20,
+		marginTop:'30%'
 	}
 })
 
