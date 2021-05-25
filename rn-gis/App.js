@@ -5,8 +5,9 @@ import { createStackNavigator } from '@react-navigation/stack'
 import Map from './components/Map'
 import Home from './components/Home'
 import * as Location from 'expo-location'
-import { Image, StyleSheet, Dimensions } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 import FitImage from 'react-native-fit-image';
+
 
 const DarkStyle = [
 	{
@@ -173,9 +174,10 @@ const DarkStyle = [
 const image = { uri: 'https://previews.123rf.com/images/mooltfilm/mooltfilm1808/mooltfilm180800024/112002439-vector-map-of-rome-in-black-and-white-city-map-simple-style.jpg' }
 const { width, height } = Dimensions.get('screen')
 
-export default function App() {
-	const Stack = createStackNavigator()
 
+export default function App() {	
+	const Stack = createStackNavigator()
+	
 	const [errorMsg, setErrorMsg] = useState(null)
 	const [location, setLocation] = useState(null)
 
