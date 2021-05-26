@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { getDistance } from 'geolib'
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
-import MapView, { ProviderPropType, Marker, OverlayComponent } from 'react-native-maps'
+import { StyleSheet, Text, View} from 'react-native'
+import MapView, { Marker } from 'react-native-maps'
 
 function Map({ navigation, route }) {
 	const [distance, setDistanceText] = useState('Hold & Drag the marker to see distance')

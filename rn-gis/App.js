@@ -53,9 +53,6 @@ export default function App() {
 					name='Home'
 					component={Home}
 					options={{ headerShown: false }}
-					initialParams={{
-						location: location,
-					}}
 				/>
 				<Stack.Screen
 					name='Default Map'

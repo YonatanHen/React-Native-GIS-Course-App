@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Button, View, Text } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
 import { StyleSheet, Dimensions } from 'react-native'
-import Orientation from 'react-native-orientation';
 import FitImage from 'react-native-fit-image';
 
 const { width, height } = Dimensions.get('screen')
