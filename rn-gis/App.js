@@ -85,18 +85,6 @@ export default function App() {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		flexDirection: 'column',
-	},
-	image: {
-		flex: 1,
-		resizeMode: 'cover',
-		justifyContent: 'center',
-	},
-})
-
 const DarkStyle = [
 	{
 		elementType: 'geometry',
