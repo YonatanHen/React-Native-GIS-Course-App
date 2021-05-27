@@ -6,13 +6,18 @@ App features can be viewed in the following screenshots:
 
 ### Homepage:
 
-![GitHub Logo](/images/logo.png)
+![Homepage](rn-gis/images/homepage.jpeg)
 
 ### Distance measurement:
 
+![Distance1](rn-gis/images/distance1.jpeg)
+
+![Distance2](rn-gis/images/distance2.jpeg)
 
 ### Distance measurement in dark mode:
 
-
+![Distance3](rn-gis/images/distance3.jpg)
 
 ### Draw polygon:
+
+![Polygon](rn-gis/images/polygon.jpeg)
